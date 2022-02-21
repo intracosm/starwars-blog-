@@ -1,0 +1,23 @@
+.bannerimage {
+    
+        width: 60%;
+        object-fit: cover;
+        background-image: url(https://cdn.shopify.com/s/files/1/1057/4964/t/24/assets/star-wars-banner.jpeg?v=8062412087493492290);
+        height:50%;
+        border-radius: 30%;
+        
+}
+body{ width: 100%;
+height:100%;}
+
+.space {
+  width: 100%;
+    height: 100%;
+    background-image: url(https://reginapizza.github.io/images/starWarsIntroDemo.gif);
+    padding-bottom: 550px;
+}
+div{ background-color: transparent;}
+
+.poi {background-color: transparent;}
+
+.pl {background-color: transparent;}
