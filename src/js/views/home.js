@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext,useState, useEffect } from "react";
 
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Charactercard } from "../component/charactercard.js";
 import { Navbar } from "../component/navbar";
 import { Planets } from "../component/planets.js";
+import { Context } from "../store/appContext";
 
 
 export const Home = () => {
   //hook variables that will be populated with api data
   const [characters, setCharacters] = useState([]);
   const [Places, setPlaces] = useState([]);
-
+	const { store, actions } = useContext(Context);
   //useeffect that will update arrays onload
   useEffect(() => {
     getData("https://swapi.dev/api/people", setCharacters);
@@ -48,27 +49,27 @@ export const Home = () => {
       <h2 className="text-white" >Characters</h2>
       <div className="d-flex text-center mt-5">
         <div className="row">
-          {characters.map((item, index) => {
+          {store.characters ? store.characters.map((item, index) => {
             return (
               <Charactercard
                 key={index}
                 character={item}
               />
             );
-          })}
+          }) : "...loading"}
         </div>
       </div>
       <h2 className="text-white ">Planets</h2>
       <div className="d-flex text-center mt-5">
         <div className="row">
-          {Places.map((item, index) => {
+          {store.Places ? store.Places.map((item, index) => {
             return (
               <Planets
                 key={index}
                 planet={item}
               />
             );
-          })}
+          }) : "...loading"}
         </div>
       </div>
     </div>
