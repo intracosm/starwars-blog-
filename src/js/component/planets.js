@@ -15,6 +15,11 @@ export const Planets = ({planet}) => {
     <p className="card-text text-white ">climate: {planet.climate}</p>
     <p className="card-text text-white ">diameter: {planet.diameter}</p>
     </div>
+    <Link to={{ pathname: "/details/"+planet.name, state: planet}}>
+            <button href="#" className="btn btn-secondary">
+              Learn More!
+            </button>
+          </Link>
   </div>
 </div>
 </div>

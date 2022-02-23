@@ -23,8 +23,10 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 		
-			  state.actions. getData("https://swapi.dev/api/people", "character");
-			  getData("https://swapi.dev/api/planets", "planet");
+			  /*state.actions.getData("https://swapi.dev/api/people", "character");
+			  state.actions.getData("https://swapi.dev/api/planets", "planet"); */
+			  state.actions.getPeople();
+			  state.actions.getPlanets();
 
 
 			

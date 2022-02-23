@@ -2,8 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			favorites: [],
-			characters:[],
-			planets:[]
+			characters: [],
+			planets: []
 		},
 
 		actions: {
@@ -16,10 +16,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 				fetch(url)
-				.then(response=>response.json())
-				.then(data=>setStore({[param2]:data.results})
-				.catch(error=> console.log("Looks like there was a problem: \n", error)))
+					.then(response => response.json())
+					.then(data => {
+						setStore({ param2: data.results })
+						console.log(data.results)
+					})
+
+					.catch(error => console.log("Looks like there was a problem: \n", error))
 			},
+
+			getPeople: () => {
+				fetch("https://swapi.dev/api/people")
+					.then(response => response.json())
+					.then(data => {
+						setStore({ characters: data.results })
+						
+					})
+					.catch(error => console.log("Looks like there was a problem: \n", error))
+
+			},
+			getPlanets: () => {
+				fetch("https://swapi.dev/api/planets")
+					.then(response => response.json())
+					.then(data => {
+						setStore({ planets: data.results })
+						
+					})
+					.catch(error => console.log("Looks like there was a problem: \n", error))
+
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

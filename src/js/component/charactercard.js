@@ -10,7 +10,7 @@ export const Charactercard = ({character}) =>{
     <p className="card-text text-white "> gender: {character.gender}</p>
     <p className="card-text text-white "> haircolor: {character.hair_color}</p>
     <p className="card-text text-white "> eyecolor: {character.eye_color}</p>
-    <Link to={{ pathname: "/characterprofile/"+character.name, state: character}}>
+    <Link to={{ pathname: "/details/"+character.name, state: character}}>
             <button href="#" className="btn btn-secondary">
               Learn More!
             </button>

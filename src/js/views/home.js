@@ -1,9 +1,9 @@
-import React, { useContext,useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
-import rigoImage from "../../img/rigo-baby.jpg";
+
 import "../../styles/home.css";
 import { Charactercard } from "../component/charactercard.js";
-import { Navbar } from "../component/navbar";
+
 import { Planets } from "../component/planets.js";
 import { Context } from "../store/appContext";
 
@@ -11,36 +11,19 @@ import { Context } from "../store/appContext";
 export const Home = () => {
   //hook variables that will be populated with api data
   const [characters, setCharacters] = useState([]);
-  const [Places, setPlaces] = useState([]);
-	const { store, actions } = useContext(Context);
+  const [places, setPlaces] = useState([]);
+  const { store, actions } = useContext(Context);
   //useeffect that will update arrays onload
   useEffect(() => {
-    getData("https://swapi.dev/api/people", setCharacters);
-    getData("https://swapi.dev/api/planets", setPlaces);
-  }, []);
+    setCharacters(store.characters)
+    setPlaces(store.planets)
+  }, [store.characters, store.planets])
+  console.log(places);
 
   // fetch method that will obtain api from people
 
-  const getData = (url,setter) => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        // Read the response as json.
-        return response.json();
-      })
-      .then((data) => {
-        // Do stuff with the JSONified response,
-        setter(data.results);
 
-      })
-      .catch((error) => {
-        console.log("Looks like there was a problem: \n", error);
-      });
-  };
 
- 
   // return, will have to populate the divs with the card component itself populated by the data fetched by the api.
   return (
 
@@ -49,27 +32,27 @@ export const Home = () => {
       <h2 className="text-white" >Characters</h2>
       <div className="d-flex text-center mt-5">
         <div className="row">
-          {store.characters ? store.characters.map((item, index) => {
+          {characters.map((item, index) => {
             return (
               <Charactercard
                 key={index}
                 character={item}
               />
             );
-          }) : "...loading"}
+          })}
         </div>
       </div>
       <h2 className="text-white ">Planets</h2>
       <div className="d-flex text-center mt-5">
         <div className="row">
-          {store.Places ? store.Places.map((item, index) => {
+          {places.map((item, index) => {
             return (
               <Planets
                 key={index}
                 planet={item}
               />
             );
-          }) : "...loading"}
+          })}
         </div>
       </div>
     </div>
